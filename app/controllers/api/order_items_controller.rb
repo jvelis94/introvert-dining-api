@@ -2,7 +2,11 @@ class Api::OrderItemsController < ApplicationController
 
     def create
         @order_item = OrderItem.new(order_item_params)
-        @order_item.save
+        if @order_item.save
+            render json: @order_item
+        else
+            render error: {error: "unable to add item to order"}, status: 400
+        end
     end
 
     private
