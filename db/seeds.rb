@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-const menuItems = [
+menuItems = [
     {
       name: 'meatball sundae',
       category: 'Appetizers',
@@ -225,5 +225,8 @@ const menuItems = [
     }
   ]
 
-  // export default menuItems
-  module.exports.menuItems = menuItems;
+menuItems.each do |item|
+    puts "creating food item: #{item[:name]}"
+    puts item
+    FoodItem.create!(name: item[:name], description: item[:blurb], price: item[:price], category: item[:category])
+end
