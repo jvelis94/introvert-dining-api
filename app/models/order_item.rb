@@ -1,4 +1,4 @@
 class OrderItem < ApplicationRecord
-    has_and_belongs_to_many :food_items
+    belongs_to :food_item
     belongs_to :order
 end
