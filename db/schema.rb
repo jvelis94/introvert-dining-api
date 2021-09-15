@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_09_15_174018) do
     t.string "name"
     t.string "description"
     t.string "image_url"
-    t.decimal "price", precision: 8, scale: 2
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "category"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_09_15_174018) do
   end
 
   create_table "order_items", force: :cascade do |t|
-    t.decimal "price"
+    t.float "price"
     t.integer "quantity"
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -43,12 +43,12 @@ ActiveRecord::Schema.define(version: 2021_09_15_174018) do
 
   create_table "orders", force: :cascade do |t|
     t.string "email"
-    t.decimal "tax_percent", precision: 15, scale: 10, default: "0.0"
-    t.decimal "tax_amount", precision: 15, scale: 10, default: "0.0"
-    t.decimal "gratuity_percent", precision: 15, scale: 10, default: "0.18"
-    t.decimal "gratuity_amount", precision: 15, scale: 10, default: "0.0"
-    t.decimal "subtotal", precision: 15, scale: 10, default: "0.0"
-    t.decimal "total", precision: 15, scale: 10, default: "0.0"
+    t.float "tax_percent", default: 0.0875
+    t.float "tax_amount", default: 0.0
+    t.float "gratuity_percent", default: 0.18
+    t.float "gratuity_amount", default: 0.0
+    t.float "subtotal", default: 0.0
+    t.float "total", default: 0.0
     t.boolean "isPaid", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -56,10 +56,10 @@ ActiveRecord::Schema.define(version: 2021_09_15_174018) do
 
   create_table "payees", force: :cascade do |t|
     t.string "email"
-    t.decimal "tax_amount", precision: 15, scale: 10, default: "0.0"
-    t.decimal "gratuity_amount", precision: 15, scale: 10, default: "0.0"
-    t.decimal "subtotal", precision: 15, scale: 10, default: "0.0"
-    t.decimal "total", precision: 15, scale: 10, default: "0.0"
+    t.decimal "tax_amount", default: "0.0"
+    t.decimal "gratuity_amount", default: "0.0"
+    t.decimal "subtotal", default: "0.0"
+    t.decimal "total", default: "0.0"
     t.boolean "isPaid", default: false
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -227,5 +227,5 @@ menuItems = [
 
 menuItems.each do |item|
     puts "creating food item: #{item[:name]}"
-    FoodItem.create!(name: item[:name], description: item[:blurb], price: item[:price], category: item[:category]).00
+    FoodItem.create!(name: item[:name], description: item[:blurb], price: item[:price], category: item[:category])
 end
