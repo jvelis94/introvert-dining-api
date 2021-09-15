@@ -9,5 +9,5 @@ class Api::OrdersController < ApplicationController
         end
     end
 
-    
+
 end

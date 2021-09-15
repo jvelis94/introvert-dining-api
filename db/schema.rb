@@ -25,19 +25,14 @@ ActiveRecord::Schema.define(version: 2021_09_15_174018) do
     t.string "category"
   end
 
-  create_table "food_items_order_items", id: false, force: :cascade do |t|
-    t.bigint "food_item_id", null: false
-    t.bigint "order_item_id", null: false
-    t.index ["food_item_id", "order_item_id"], name: "index_food_items_order_items_on_food_item_id_and_order_item_id"
-    t.index ["order_item_id", "food_item_id"], name: "index_food_items_order_items_on_order_item_id_and_food_item_id"
-  end
-
   create_table "order_items", force: :cascade do |t|
     t.float "price"
     t.integer "quantity"
     t.bigint "order_id", null: false
+    t.bigint "food_item_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["food_item_id"], name: "index_order_items_on_food_item_id"
     t.index ["order_id"], name: "index_order_items_on_order_id"
   end
 
@@ -67,6 +62,7 @@ ActiveRecord::Schema.define(version: 2021_09_15_174018) do
     t.index ["order_id"], name: "index_payees_on_order_id"
   end
 
+  add_foreign_key "order_items", "food_items"
   add_foreign_key "order_items", "orders"
   add_foreign_key "payees", "orders"
 end
