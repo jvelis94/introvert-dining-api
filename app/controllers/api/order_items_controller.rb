@@ -1,5 +1,6 @@
 class Api::OrderItemsController < ApplicationController
     before_action :set_order
+    before_action :set_order_item, only: [:destroy]
 
     def index
         @order_items = OrderItem.joins(:order).where({order: { email: @order.email}})
@@ -17,10 +18,21 @@ class Api::OrderItemsController < ApplicationController
         end
     end
 
+    def destroy
+        @order_item.quantity.times { UpdateOrderSubtotal.new(@order, @order_item, 'decrement').call }
+        @order_item.destroy
+
+
+    end
+
     private
 
     def order_item_params
         params.require(:order_item).permit(:price, :quantity, :order_id, :food_item_id)
+    end
+
+    def set_order_item
+        @order_item = OrderItem.find(params[:id])
     end
 
     def set_order
