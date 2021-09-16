@@ -20,4 +20,13 @@ RSpec.describe "Api::OrderItems", type: :request do
       end.to change(OrderItem, :count).by(1)
     end
   end
+
+  describe "DELETE /destroy" do
+    it 'should destroy an order item record' do
+      @order_item = OrderItem.create({id: 1, price: 10.00, quantity: 1, order_id: order.id, food_item_id: food_item.id})
+      expect do 
+        delete "/api/orders/1/order_items/1"
+      end.to change(OrderItem, :count).by(-1)
+    end
+  end
 end
