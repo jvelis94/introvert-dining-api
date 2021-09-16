@@ -1,5 +1,12 @@
 class Api::OrderItemsController < ApplicationController
     before_action :set_order
+
+    def index
+        @order_items = OrderItem.joins(:order).where({order: { email: @order.email}})
+        render json: @order_items
+
+    end
+
     def create
         @order_item = OrderItem.new(order_item_params)
         if @order_item.save
