@@ -18,11 +18,15 @@ class Api::OrderItemsController < ApplicationController
         end
     end
 
+    def update
+        params[:action] === "increment" ? UpdateOrderSubtotal.new(@order, @order_item, "increment").call : UpdateOrderSubtotal.new(@order, @order_item, "decrement").call
+        render json: @order
+    end
+
     def destroy
         @order_item.quantity.times { UpdateOrderSubtotal.new(@order, @order_item, 'decrement').call }
         @order_item.destroy
-
-
+        render json: @order
     end
 
     private
