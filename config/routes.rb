@@ -4,5 +4,6 @@ Rails.application.routes.draw do
     resources :orders do
       resources :order_items
     end
+    resources :food_items
   end
 end

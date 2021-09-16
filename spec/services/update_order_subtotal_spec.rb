@@ -9,7 +9,6 @@ RSpec.describe UpdateOrderSubtotal, type: :model do
 
     it "should update order subtotal either up or down depending on the action" do
         updated_order = UpdateOrderSubtotal.new(order, new_order_item, 'increment').call
-        # puts order
 
         expect(order.subtotal).to eq(updated_order.subtotal)
     end
