@@ -14,13 +14,13 @@ class UpdateOrderItemQuantity
 
     def increment
         @order_item.increment!(:quantity)
-        UpdateOrderSubtotal.new(@order, @order_item, "increment")
+        UpdateOrderSubtotal.new(@order, @order_item, "increment").call
     end
 
 
     def decrement
         @order_item.decrement!(:quantity)
-        UpdateOrderSubtotal.new(@order, @order_item, "decrement")
+        UpdateOrderSubtotal.new(@order, @order_item, "decrement").call
     end
 
 end

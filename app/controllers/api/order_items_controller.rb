@@ -1,11 +1,10 @@
 class Api::OrderItemsController < ApplicationController
     before_action :set_order
-    before_action :set_order_item, only: [:destroy]
+    before_action :set_order_item, only: [:destroy, :update]
 
     def index
         @order_items = OrderItem.joins(:order).where({order: { email: @order.email}})
         render json: @order_items
-
     end
 
     def create
@@ -20,8 +19,8 @@ class Api::OrderItemsController < ApplicationController
     end
 
     def update
-        params[:action] === "increment" ? UpdateOrderSubtotal.new(@order, @order_item, "increment").call : UpdateOrderSubtotal.new(@order, @order_item, "decrement").call
-        render json: @order
+        params[:item_action] === "increment" ? UpdateOrderItemQuantity.new(@order, @order_item, "increment").call : UpdateOrderItemQuantity.new(@order, @order_item, "decrement").call
+        render json: @order.reload.to_json(include: { order_items: {include: :food_item} })
     end
 
     def destroy

@@ -14,6 +14,7 @@ class UpdateOrderSubtotal
 
     def increment_subtotal
         higher_subtotal = @order.subtotal + @order_item.price
+        return higher_subtotal
     end
 
     def decrement_subtotal
