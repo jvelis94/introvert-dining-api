@@ -10,7 +10,7 @@ class Api::OrderItemsController < ApplicationController
     def create
         @order_item = OrderItem.new(order_item_params)
         if @order_item.save
-            UpdateOrderSubtotal.new(@order, @order_item, 'increment').call
+            UpdateOrderTotal.new(@order, @order_item, 'increment').call
             render json: @order.to_json(include: :order_items )
         else
             puts @order_item.errors.full_messages
@@ -24,9 +24,9 @@ class Api::OrderItemsController < ApplicationController
     end
 
     def destroy
-        @order_item.quantity.times { UpdateOrderSubtotal.new(@order, @order_item, 'decrement').call }
+        @order_item.quantity.times { UpdateOrderTotal.new(@order, @order_item, 'decrement').call }
         @order_item.destroy
-        render json: @order
+        render json: @order.reload.to_json(include: { order_items: {include: :food_item} })
     end
 
     private
