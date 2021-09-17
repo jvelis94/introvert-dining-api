@@ -12,8 +12,9 @@ class Api::OrderItemsController < ApplicationController
         @order_item = OrderItem.new(order_item_params)
         if @order_item.save
             UpdateOrderSubtotal.new(@order, @order_item, 'increment').call
-            render json: @order_item.order
+            render json: @order.to_json(include: :order_items )
         else
+            puts @order_item.errors.full_messages
             render error: {error: "unable to add item to order"}, status: 400
         end
     end
@@ -40,7 +41,7 @@ class Api::OrderItemsController < ApplicationController
     end
 
     def set_order
-        @order = Order.find(params[:order_id])
+        @order = Order.includes(:order_items).find(params[:order_id])
     end
 
 end
