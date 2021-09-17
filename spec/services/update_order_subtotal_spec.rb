@@ -17,6 +17,6 @@ RSpec.describe UpdateOrderSubtotal, type: :model do
         updated_order = UpdateOrderSubtotal.new(order, new_order_item, 'decrement').call
 
         expect(order.subtotal).to eq(updated_order.subtotal)
-    end
+    end   
   end
 end
