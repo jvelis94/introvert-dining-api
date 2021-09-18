@@ -5,5 +5,6 @@ Rails.application.routes.draw do
       resources :order_items
     end
     resources :food_items
+    resources :charges, only: :create
   end
 end
