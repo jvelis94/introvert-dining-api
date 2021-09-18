@@ -1,7 +1,5 @@
 class Api::OrdersController < ApplicationController
     def index
-        puts "in orders controller"
-        puts params
         @orders = Order.where(email: params[:email])
         render json: @orders
     end
