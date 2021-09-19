@@ -1,7 +1,7 @@
 class Api::OrdersController < ApplicationController
     def index
         @orders = Order.where(email: params[:email])
-        render json: @orders
+        render json: @orders.to_json(include: { order_items: {include: :food_item} })
     end
 
     def show

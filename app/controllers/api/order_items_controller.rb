@@ -1,6 +1,6 @@
 class Api::OrderItemsController < ApplicationController
     before_action :set_order
-    before_action :set_order_item, only: [:destroy, :update]
+    before_action :set_order_item, only: [:destroy, :update, :create]
 
     def index
         @order_items = OrderItem.joins(:order).where({order: { email: @order.email}})
