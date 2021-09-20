@@ -2,7 +2,7 @@
 
 Introvert Dining is an application that allows users order and pay for their restaurant meal all from the app. It is catered for introverts, or simply those who dislike waiting for the waiter to notice that they are ready to order/pay.
 
-Backend can be found [here](https://github.com/jvelis94/introvert-dining-api)
+Frontend can be found [here](https://github.com/jvelis94/introvert-dining-nextjs)
 
 * Built using Ruby on Rails and Postgres
 * Stripe API to process payments
