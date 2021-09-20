@@ -1,24 +1,17 @@
-# README
+## Introvert Dining
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Introvert Dining is an application that allows users order and pay for their restaurant meal all from the app. It is catered for introverts, or simply those who dislike waiting for the waiter to notice that they are ready to order/pay.
 
-Things you may want to cover:
+Backend can be found [here](https://github.com/jvelis94/introvert-dining-api)
 
-* Ruby version
+* Built using Ruby on Rails and Postgres
+* Stripe API to process payments
 
-* System dependencies
 
-* Configuration
+## Features include:
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* No need to sign-in. User activity and session is stored using cookies. Only an email is needed to get started
+* Add order items to cart
+* Edit quantity of order items or remove them altogether
+* Pay for order using Stripe API
+* View previous orders
